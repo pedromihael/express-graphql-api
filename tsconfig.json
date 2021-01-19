@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@typeDefs/*": ["./src/typeDefs/*"],
+      "@resolvers/*": ["./src/resolvers/*"]
     }
   },
   "include": ["src/**/*"]

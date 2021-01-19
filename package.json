@@ -20,14 +20,19 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
+    "apollo-server-express": "^2.19.2",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "express": "^4.17.1",
-    "ts-node-dev": "^1.1.1"
+    "graphql": "^15.4.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-node-dev": "^1.1.1",
+    "type-graphql": "^1.1.1"
   },
   "scripts": {
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignore", 
-    "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly --ignore-watch node_modules --no-notify src/server.ts",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignore",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly --ignore-watch node_modules --no-notify src/server.ts",
     "test": "jest"
   }
 }

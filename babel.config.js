@@ -15,7 +15,8 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '@path': './src/path',
+          '@typeDefs': './src/typeDefs',
+          '@resolvers': './src/resolvers',
         },
       },
     ],
