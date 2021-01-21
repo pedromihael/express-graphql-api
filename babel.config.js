@@ -18,6 +18,7 @@ module.exports = {
           '@domain': './src/domain',
           '@useCases': './src/useCases',
           '@infrastructure': './src/infrastructure',
+          '@entities': './src/entities',
         },
       },
     ],

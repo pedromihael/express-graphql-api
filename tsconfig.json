@@ -19,7 +19,8 @@
       "~/*": ["./src/*"],
       "@domain/*": ["./src/domain/*"],
       "@useCases/*": ["./src/useCases/*"],
-      "@infrastructure/*": ["./src/infrastructure"]
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@entities/*": ["./src/entities/*"]
     }
   },
   "include": ["src/**/*"]
