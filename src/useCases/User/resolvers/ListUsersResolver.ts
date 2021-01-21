@@ -1,16 +1,19 @@
-import IUseFilter from '@useCases/User/resolvers/IUseFilters';
+import 'reflect-metadata';
+import IUserRepository from '@entities/User/IUserRepository';
+import { inject, injectable } from 'tsyringe';
+@injectable()
+export default class ListUsersResolver {
+  constructor(@inject('UsersRepository') private usersRepository: IUserRepository) {}
 
-const users = [
-  { _id: 1, index: 0, age: 21, email: 'email1', phone: '123123', name: 'Pedro' },
-  { _id: 2, index: 1, age: 27, email: 'email2', phone: '456456', name: 'PedCamila' },
-  { _id: 3, index: 2, age: 22, email: 'email3', phone: '789789', name: 'Pedroncio' },
-];
-
-export default {
-  Query: {
-    list: () => users,
-    listOne(context, { name }) {
-      return users.filter((user) => user.name.match(new RegExp(name, 'g')));
-    },
-  },
-};
+  async execute() {
+    return {
+      Query: {
+        list: async (_, args, {}) => {
+          let { name } = await args;
+          const result = name ? await this.usersRepository.findByName(name) : await this.usersRepository.findAll();
+          return result ? result : [];
+        },
+      },
+    };
+  }
+}
