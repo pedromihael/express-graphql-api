@@ -19,7 +19,7 @@ export default class FakeUsersRepository implements IUserRepository {
   }
 
   async findByName(name: string): Promise<User[]> {
-    return this.users.filter((user) => user.name === name);
+    return this.users.filter((user) => new RegExp(`${name[0]}${name[1]}`, 'gi').test(user.name));
   }
 
   async save(user: User): Promise<User> {
