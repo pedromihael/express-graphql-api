@@ -6,8 +6,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    list: [User!]
-    listOne(name: String!): [User!]
+    list(name: String): [User]
   }
 
   type User {
