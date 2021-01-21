@@ -3,13 +3,18 @@ import { ApolloServer } from 'apollo-server-express';
 import UserTypeDefs from '@domain/User/typeDefs';
 import UserResolvers from '@useCases/User/resolvers';
 
+import '@useCases/User/container';
+
 (async () => {
   const app = express();
   app.disable('x-powered-by');
 
+  const usersResolvers = new UserResolvers();
+  const { users_list } = await usersResolvers.getResolvers();
+
   const apolloServer = new ApolloServer({
     typeDefs: UserTypeDefs,
-    resolvers: UserResolvers,
+    resolvers: users_list,
     playground: true,
     context: ({ req, res }) => ({ req, res }),
   });
