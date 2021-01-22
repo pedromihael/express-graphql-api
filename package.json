@@ -33,6 +33,11 @@
     "type-graphql": "^1.1.1",
     "uuid": "^8.3.2"
   },
+  "jest": {
+    "projects": [
+      "<rootDir>/jest.config.js"
+    ]
+  },
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/index.js",

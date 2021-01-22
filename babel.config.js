@@ -19,6 +19,7 @@ module.exports = {
           '@useCases': './src/useCases',
           '@infrastructure': './src/infrastructure',
           '@entities': './src/entities',
+          '@helpers': './src/helpers/*',
         },
       },
     ],

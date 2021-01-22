@@ -3,10 +3,19 @@ const { compilerOptions } = require('./tsconfig.json');
 
 module.exports = {
   clearMocks: true,
-  coverageProvider: 'v8',
-  projects: ['ts-jest'],
-  testEnvironment: 'node',
+
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>',
+  }),
+
+  collectCoverage: true,
+  collectCoverageFrom: ['<rootDir>/src/modules/**/services/*.ts', '<rootDir>/src/modules/**/services/**/*.ts'],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text-summary', 'lcov'],
+
   preset: 'ts-jest',
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/src/' }),
+
+  testEnvironment: 'node',
+
   testMatch: ['**/*.spec.ts'],
 };

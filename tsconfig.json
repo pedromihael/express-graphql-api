@@ -20,7 +20,8 @@
       "@domain/*": ["./src/domain/*"],
       "@useCases/*": ["./src/useCases/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
-      "@entities/*": ["./src/entities/*"]
+      "@entities/*": ["./src/entities/*"],
+      "@helpers/*": ["./src/helpers/*"]
     }
   },
   "include": ["src/**/*"]
