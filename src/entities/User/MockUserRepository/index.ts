@@ -1,9 +1,10 @@
 import { User } from '~/domain/User/User';
 import { UserDTO } from '~/domain/User/UserDTO';
 import IUserRepository from '../IUserRepository';
+import mock from './mock';
 
 export default class MockUsersRepository implements IUserRepository {
-  users = [];
+  users = mock;
 
   async delete(id: any): Promise<void> {
     this.users = this.users.filter((user) => user._id !== id);
