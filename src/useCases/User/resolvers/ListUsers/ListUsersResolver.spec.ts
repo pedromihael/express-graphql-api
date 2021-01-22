@@ -4,16 +4,32 @@ import MockUsersRepository from '@entities/User/MockUserRepository';
 import IUserRepository from '@entities/User/IUserRepository';
 import ListUsersResolver from './ListUsersResolver';
 import UserBuilder from '@helpers/builders/UserBuilder';
+import { UserDTO } from '~/domain/User/UserDTO';
 
 let usersRepository: IUserRepository;
 let listUsersResolver: ListUsersResolver;
 let userId: any;
+let userId2: any;
+let userId3: any;
+let userId4: any;
+
+let userData1: UserDTO;
+let userData2: UserDTO;
+let userData3: UserDTO;
+let userData4: UserDTO;
 
 describe('ListUsersResolver', () => {
   beforeEach(() => {
     usersRepository = new MockUsersRepository();
     listUsersResolver = new ListUsersResolver(usersRepository);
     userId = uuidv4();
+    userId2 = uuidv4();
+    userId3 = uuidv4();
+    userId4 = uuidv4();
+    userData1 = new UserBuilder(userId).setName('Pedro').build();
+    userData2 = new UserBuilder(userId2).setName('Pencio').build();
+    userData3 = new UserBuilder(userId3).setName('abcpedro').build();
+    userData4 = new UserBuilder(userId4).setName('mihael').build();
   });
 
   it('should list all users if no arg is provided', async () => {
@@ -28,15 +44,6 @@ describe('ListUsersResolver', () => {
   });
 
   it('should list users with name mateched by arg regex', async () => {
-    const userId2 = uuidv4();
-    const userId3 = uuidv4();
-    const userId4 = uuidv4();
-
-    const userData1 = new UserBuilder(userId).setName('Pedro').build();
-    const userData2 = new UserBuilder(userId2).setName('Pencio').build();
-    const userData3 = new UserBuilder(userId3).setName('abcpedro').build();
-    const userData4 = new UserBuilder(userId4).setName('mihael').build();
-
     const userDatas = [userData1, userData2, userData3, userData4];
 
     userDatas.map(async (userData) => {
@@ -51,15 +58,6 @@ describe('ListUsersResolver', () => {
   });
 
   it('should list no user if arg providade does not match regex', async () => {
-    const userId2 = uuidv4();
-    const userId3 = uuidv4();
-    const userId4 = uuidv4();
-
-    const userData1 = new UserBuilder(userId).setName('Pedro').build();
-    const userData2 = new UserBuilder(userId2).setName('Pencio').build();
-    const userData3 = new UserBuilder(userId3).setName('abcpedro').build();
-    const userData4 = new UserBuilder(userId4).setName('mihael').build();
-
     const userDatas = [userData1, userData2, userData3, userData4];
 
     userDatas.map(async (userData) => {
