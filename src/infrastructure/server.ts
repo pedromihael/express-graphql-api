@@ -1,6 +1,9 @@
 import 'reflect-metadata';
 
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import morgan from 'morgan';
 import { ApolloServer } from 'apollo-server-express';
 import UserTypeDefs from '@domain/User/typeDefs';
 import UserResolvers from '@useCases/User/resolvers';
@@ -21,7 +24,17 @@ import '@useCases/User/container';
     context: ({ req, res }) => ({ req, res }),
   });
 
-  apolloServer.applyMiddleware({ app, cors: false });
+  app.set('trust proxy', true);
+
+  const logsFile = fs.createWriteStream(path.join(__dirname, 'requests.log'), { flags: 'a' });
+
+  app.use(
+    morgan('combined', {
+      stream: logsFile,
+    }),
+  );
+
+  apolloServer.applyMiddleware({ app, cors: true });
 
   app.listen({ port: 4000 }, () => {
     console.log(`Graphql-Express server is running on http://localhost:4000${apolloServer.graphqlPath}!`);
