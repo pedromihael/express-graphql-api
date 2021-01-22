@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import ListUsersResolvers from './ListUsersResolver';
+import ListUsersResolvers from './ListUsers/ListUsersResolver';
 
 export default class Resolvers {
   async getResolvers() {
