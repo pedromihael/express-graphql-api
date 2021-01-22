@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import FakeUsersRepository from '@entities/User/FakeUserRepository';
+import MockUsersRepository from '~/entities/User/MockUserRepository';
 import IUserRepository from '@entities/User/IUserRepository';
 
-container.registerSingleton<IUserRepository>('UsersRepository', FakeUsersRepository);
+container.registerSingleton<IUserRepository>('UsersRepository', MockUsersRepository);
