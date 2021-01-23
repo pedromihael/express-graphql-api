@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'regenerator-runtime/runtime.js';
 
 import express from 'express';
 import fs from 'fs';
@@ -8,7 +9,7 @@ import { ApolloServer } from 'apollo-server-express';
 import UserTypeDefs from '@domain/User/typeDefs';
 import UserResolvers from '@useCases/User/resolvers';
 
-import '@useCases/User/container';
+import '@infrastructure/dependenciesRegisters';
 
 (async () => {
   const app = express();
@@ -21,15 +22,14 @@ import '@useCases/User/container';
     typeDefs: UserTypeDefs,
     resolvers: users_list,
     playground: true,
-    context: ({ req, res }) => ({ req, res }),
   });
-
-  app.set('trust proxy', true);
 
   const logsFile = fs.createWriteStream(path.join(__dirname, 'requests.log'), { flags: 'a' });
 
+  morgan.token('body', (req: any, res: any) => JSON.stringify(req.body));
+
   app.use(
-    morgan('combined', {
+    morgan(':remote-addr - :method :url :status :response-time ms - :res[content-length] :body', {
       stream: logsFile,
     }),
   );
