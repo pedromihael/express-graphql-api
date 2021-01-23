@@ -36,7 +36,7 @@ import '@infrastructure/dependenciesRegisters';
 
   apolloServer.applyMiddleware({ app, cors: true });
 
-  app.listen({ port: 4000 }, () => {
-    console.log(`Graphql-Express server is running on http://localhost:4000${apolloServer.graphqlPath}!`);
+  app.listen(process.env.PORT || 4000, () => {
+    console.log(`Graphql-Express server is running! Graphql served in ${apolloServer.graphqlPath}!`);
   });
 })();
