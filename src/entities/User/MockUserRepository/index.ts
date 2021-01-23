@@ -18,7 +18,11 @@ export default class MockUsersRepository implements IUserRepository {
   }
 
   async findByName(name: string): Promise<User[]> {
-    return users.filter((user) => new RegExp(`${name[0]}${name[1]}`, 'gi').test(user.name));
+    const nameLength = name.length;
+    const considerableSubstringLength = Math.ceil(nameLength * 0.6);
+    const considerableSubstring = name.slice(0, considerableSubstringLength);
+
+    return users.filter((user) => new RegExp(`${considerableSubstring}`, 'gi').test(user.name));
   }
 
   async save(user: User): Promise<User> {

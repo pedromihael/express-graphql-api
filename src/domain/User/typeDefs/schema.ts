@@ -1,10 +1,6 @@
 import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
-  input UserFilter {
-    name: String
-  }
-
   type Query {
     list(name: String): [User]
   }
