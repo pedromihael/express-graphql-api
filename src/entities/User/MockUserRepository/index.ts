@@ -3,35 +3,34 @@ import { UserDTO } from '~/domain/User/UserDTO';
 import IUserRepository from '../IUserRepository';
 import mock from './mock';
 
+let users = mock;
 export default class MockUsersRepository implements IUserRepository {
-  users = mock;
-
   async delete(id: any): Promise<void> {
-    this.users = this.users.filter((user) => user._id !== id);
+    users = users.filter((user) => user._id !== id);
   }
 
   async findAll(): Promise<User[]> {
-    return this.users;
+    return users;
   }
 
-  async findById(id: any): Promise<User> {
-    return this.users.find((user) => user._id === id);
+  async findById(id: any): Promise<User | undefined> {
+    return users.find((user) => user._id === id);
   }
 
   async findByName(name: string): Promise<User[]> {
-    return this.users.filter((user) => new RegExp(`${name[0]}${name[1]}`, 'gi').test(user.name));
+    return users.filter((user) => new RegExp(`${name[0]}${name[1]}`, 'gi').test(user.name));
   }
 
   async save(user: User): Promise<User> {
-    const foundIndex = this.users.findIndex((thisUser) => thisUser._id === user._id);
+    const foundIndex = users.findIndex((thisUser) => thisUser._id === user._id);
 
-    this.users[foundIndex] = user;
+    users[foundIndex] = user;
 
     return user;
   }
 
   async create(user: UserDTO): Promise<User> {
-    this.users = [...this.users, user];
+    users = [...users, user];
     return user;
   }
 }
