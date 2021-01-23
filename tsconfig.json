@@ -14,6 +14,8 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "baseUrl": ".",
+    "strict": true,
+    "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "~/*": ["./src/*"],
