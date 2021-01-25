@@ -5,6 +5,7 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import morgan from 'morgan';
+import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import UserTypeDefs from '@domain/User/typeDefs';
 import UserResolvers from '@useCases/User/resolvers';
@@ -23,6 +24,8 @@ import '@infrastructure/dependenciesRegisters';
     resolvers: users_list,
     playground: true,
   });
+
+  app.use(cors());
 
   const logsFile = fs.createWriteStream(path.join(__dirname, 'requests.log'), { flags: 'a' });
 
